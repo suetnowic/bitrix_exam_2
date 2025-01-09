@@ -33,6 +33,11 @@ $arTemplateParameters = array(
 		"TYPE" => "CHECKBOX",
 		"DEFAULT" => "N",
 	],
+	"CANONICAL" => [
+		"NAME" => GetMessage("CANONICAL"),
+		"TYPE" => "STRING",
+		"DEFAULT" => "",
+	],
 );
 
 if (($arCurrentValues['USE_SHARE'] ?? 'N') === 'Y')
