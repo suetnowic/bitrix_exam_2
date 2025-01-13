@@ -21,6 +21,7 @@ if($this->StartResultCache()) {
 
 		$arSections = [];
 		$arProducts = [];
+		$arPrice	= [];
 
 		$rsSections = CIBlockSection::GetList(
 			[],
@@ -62,6 +63,7 @@ if($this->StartResultCache()) {
 			$arButtons = CIBlock::GetPanelButtons($arParams["PRODUCTS_IBLOCK_ID"], $product["ID"]);
 
 			$arResult["PRODUCT_QTY"]++;
+			$arPrice[] = $product["PROPERTY_PRICE_VALUE"];
 			$arProducts[$product["IBLOCK_SECTION_ID"]][] = [
 				"ID" => $product["ID"],
 				"NAME" => $product["NAME"],
@@ -108,9 +110,12 @@ if($this->StartResultCache()) {
 			$arResult["ADD_NEWS"]["LINK"] = $arButtons["edit"]["add_element"]["ACTION_URL"];
 			$arResult["ITEMS"][] = $item;
 		}
+
+		$arResult["PRICE"]["MIN"] = min($arPrice);
+		$arResult["PRICE"]["MAX"] = max($arPrice);
 	}
 
-	$this->SetResultCacheKeys([]);
+	$this->SetResultCacheKeys(["PRICE"]);
 
 	$APPLICATION->SetTitle(GetMessage("TITLE_COUNT_PRODUCT", ["#COUNT#" => $arResult["PRODUCT_QTY"]]));
 
