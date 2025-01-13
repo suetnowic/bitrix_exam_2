@@ -71,6 +71,17 @@ if(
 			false,
 			[]
 		);
+
+		$arButtons = CIBlock::GetPanelButtons($arParams["PRODUCTS_IBLOCK_ID"]);
+
+		$arIcons[] = array(
+			"URL"		=> $arButtons["submenu"]["element_list"]["ACTION_URL"],
+			"TITLE"		=> "ИБ в Админке", //GetMessage('MAIN_MENU_ADD_NEW'),
+			"IN_PARAMS_MENU" => true
+		);
+
+		$this->AddIncludeAreaIcons($arIcons);
+
 		$rsProducts->setUrlTemplates($arParams["TEMPLATE_DETAIL_URL"]);
 		while($product = $rsProducts->GetNextElement()) {
 			$fields = $product->GetFields();
