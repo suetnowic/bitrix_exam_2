@@ -2,6 +2,9 @@
 
 <p>---</p>
 
+<? $url = $APPLICATION->GetCurPage() . "?F=Y"; ?>
+<a href="<?=$url?>"><?=$url;?></a>
+
 <p><b><?=GetMessage("SIMPLECOMP_EXAM2_CAT_TITLE")?></b></p>
 
 <ul>
