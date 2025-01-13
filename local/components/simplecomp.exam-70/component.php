@@ -58,13 +58,21 @@ if($this->StartResultCache()) {
 			]
 		);
 		while($product = $rsProducts->GetNext()) {
+
+			$arButtons = CIBlock::GetPanelButtons($arParams["PRODUCTS_IBLOCK_ID"], $product["ID"]);
+
 			$arResult["PRODUCT_QTY"]++;
 			$arProducts[$product["IBLOCK_SECTION_ID"]][] = [
+				"ID" => $product["ID"],
 				"NAME" => $product["NAME"],
 				"ARTNUMBER" => $product["PROPERTY_ARTNUMBER_VALUE"],
 				"MATERIAL" => $product["PROPERTY_MATERIAL_VALUE"],
 				"PRICE" => $product["PROPERTY_PRICE_VALUE"],
+				"EDIT_LINK" => $arButtons["edit"]["edit_element"]["ACTION_URL"],
+				"DELETE_LINK" => $arButtons["edit"]["delete_element"]["ACTION_URL"],
+				"IBLOCK_ID" => $arParams["PRODUCTS_IBLOCK_ID"],
 			];
+			$arResult["ADD_PRODUCTS"]["LINK"] = $arButtons["edit"]["add_element"]["ACTION_URL"];
 		}
 
 		$rsNews = CIBlockElement::GetList(
@@ -82,6 +90,9 @@ if($this->StartResultCache()) {
 			]
 		);
 		while($news = $rsNews->GetNext()) {
+
+			$arButtons = CIBlock::GetPanelButtons($arParams["NEWS_IBLOCK_ID"], $news["ID"]);
+
 			$item = $news;
 			$item["PRODUCTS"] = [];
 			$item["SECTIONS"] = [];
@@ -89,8 +100,12 @@ if($this->StartResultCache()) {
 				if(in_array($news["ID"], $arSect[$arParams["UF_CODE"]])) {
 					$item["SECTIONS"][] = $arSect["NAME"];
 					$item["PRODUCTS"] = array_merge($item["PRODUCTS"], $arProducts[$sectionId]);
+					$item["EDIT_LINK"] = $arButtons["edit"]["edit_element"]["ACTION_URL"];
+					$item["DELETE_LINK"] = $arButtons["edit"]["delete_element"]["ACTION_URL"];
+					$item["IBLOCK_ID"] = $arParams["NEWS_IBLOCK_ID"];
 				}
 			}
+			$arResult["ADD_NEWS"]["LINK"] = $arButtons["edit"]["add_element"]["ACTION_URL"];
 			$arResult["ITEMS"][] = $item;
 		}
 	}

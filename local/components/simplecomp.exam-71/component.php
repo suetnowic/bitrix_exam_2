@@ -12,7 +12,6 @@ if(isset($_GET['F'])) {
 
 if(!Loader::includeModule("iblock"))
 {
-	$this->abortResultCache();
 	ShowError(GetMessage("SIMPLECOMP_EXAM2_IBLOCK_MODULE_NONE"));
 	return;
 }
