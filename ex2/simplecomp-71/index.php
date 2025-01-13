@@ -12,7 +12,8 @@ $APPLICATION->SetTitle("Простой компонент");
 		"CACHE_GROUPS" => "Y",
 		"CLASSIF_IBLOCK_ID" => "7",
 		"TEMPLATE_DETAIL_URL" => "catalog_exam/#SECTION_ID#/#ELEMENT_CODE#",
-		"PROP_CODE" => "FIRMA"
+		"PROP_CODE" => "FIRMA",
+		"NEWS_COUNT" => "2"
 	),
 	false
 );?><?require($_SERVER["DOCUMENT_ROOT"]."/bitrix/footer.php");?>

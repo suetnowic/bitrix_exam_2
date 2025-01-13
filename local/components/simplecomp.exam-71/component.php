@@ -16,6 +16,14 @@ if(!Loader::includeModule("iblock"))
 	return;
 }
 
+$arNavParams = array(
+		"nPageSize" => $arParams["NEWS_COUNT"],
+		"bDescPageNumbering" => "",
+		"bShowAll" => true,
+	);
+
+$arNavigation = CDBResult::GetNavParams($arNavParams);
+
 if(
 	intval($arParams["PRODUCTS_IBLOCK_ID"]) > 0 &&
 	intval($arParams["CLASSIF_IBLOCK_ID"]) > 0 &&
@@ -23,7 +31,7 @@ if(
 	!empty($arParams["PROP_CODE"])
 ) {
 
-	if($this->StartResultCache(false, [$USER->GetGroups(), $isFilter])) {
+	if($this->StartResultCache(false, [$USER->GetGroups(), $isFilter, $arNavigation])) {
 
 		$arClassif = [];
 		$arProducts = [];
@@ -35,12 +43,15 @@ if(
 				"ACTIVE" => "Y",
 			],
 			false,
-			false,
+			$arNavParams,
 			[
 				"ID", 
 				"NAME"
 			]
 		);
+
+		$arResult["NAV_STRING"] = $rsClassif->GetPageNavString(GetMessage("NAV_TITLE"));
+
 		while($classif = $rsClassif->GetNext()) {
 			$arResult["SECTION_QTY"]++;
 			$arClassif[$classif["ID"]] = $classif;

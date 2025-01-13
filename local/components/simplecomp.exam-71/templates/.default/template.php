@@ -25,3 +25,6 @@
 		</li>
 	<? endforeach; ?>
 </ul>
+
+<b><?=GetMessage("NAVIGATION");?></b><br>
+<?=$arResult["NAV_STRING"];?>
