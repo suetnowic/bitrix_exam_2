@@ -11,7 +11,11 @@
 			<ul>
 				<? foreach($news["PRODUCTS"] as $product): ?>
 					<li>
-						<?=$product["NAME"];?> - <?=$product["PRICE"];?> - <?=$product["MATERIAL"];?> - <?=$product["ARTNUMBER"];?> - <?=$product["DETAIL_URL"];?>
+						<?=$product["NAME"];?> - 
+						<?=$product["PRICE"];?> - 
+						<?=$product["MATERIAL"];?> - 
+						<?=$product["ARTNUMBER"];?> - 
+						(<?=$product["DETAIL_URL"];?>)
 					</li>
 				<? endforeach; ?>
 			</ul>

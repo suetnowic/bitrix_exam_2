@@ -19,55 +19,61 @@ if($this->StartResultCache(false, ($arParams["CACHE_GROUPS"]==="N" ? false: $USE
 		!empty($arParams["TEMPLATE_DETAIL_URL"]) &&
 		!empty($arParams["PROP_CODE"])
 	) {
-		$arClassif = [];
-		$arProducts = [];
 
-		$rsClassif = CIBlockElement::GetList(
-			[],
-			[
-				"IBLOCK_ID" => $arParams["CLASSIF_IBLOCK_ID"],
-				"ACTIVE" => "Y",
-			],
-			false,
-			false,
-			[
-				"ID", 
-				"NAME"
-			]
-		);
-		while($classif = $rsClassif->GetNext()) {
-			$arResult["SECTION_QTY"]++;
-			$arClassif[$classif["ID"]] = $classif;
-		}
+		if($this->StartResultCache(false, $USER->GetGroups())) {
 
-		$rsProducts = CIBlockElement::GetList(
-			[],
-			[
-				"IBLOCK_ID" => $arParams["PRODUCTS_IBLOCK_ID"],
-				"ACTIVE" => "Y",
-				"PROPERTY_FIRMA" => array_column($arClassif, "ID"),
-			],
-			false,
-			false,
-			[]
-		);
-		$rsProducts->setUrlTemplates($arParams["TEMPLATE_DETAIL_URL"]);
-		while($product = $rsProducts->GetNextElement()) {
-			$fields = $product->GetFields();
-			$props = $product->GetProperties();
+			$arClassif = [];
+			$arProducts = [];
 
-			foreach($arClassif as $key => $value) {
-				$arClassif[$key]["PRODUCTS"][] = [
-					"NAME" => $fields["NAME"],
-					"DETAIL_URL" => $fields["DETAIL_PAGE_URL"],
-					"MATERIAL" => $props["MATERIAL"]["VALUE"],
-					"ARTNUMBER" => $props["ARTNUMBER"]["VALUE"],
-					"PRICE" => $props["PRICE"]["VALUE"],
-				];
+			$rsClassif = CIBlockElement::GetList(
+				[],
+				[
+					"IBLOCK_ID" => $arParams["CLASSIF_IBLOCK_ID"],
+					"ACTIVE" => "Y",
+				],
+				false,
+				false,
+				[
+					"ID", 
+					"NAME"
+				]
+			);
+			while($classif = $rsClassif->GetNext()) {
+				$arResult["SECTION_QTY"]++;
+				$arClassif[$classif["ID"]] = $classif;
 			}
+
+			$rsProducts = CIBlockElement::GetList(
+				[
+					"name" => "asc",
+					"sort" => "asc",
+				],
+				[
+					"IBLOCK_ID" => $arParams["PRODUCTS_IBLOCK_ID"],
+					"ACTIVE" => "Y",
+					"PROPERTY_FIRMA" => array_column($arClassif, "ID"),
+				],
+				false,
+				false,
+				[]
+			);
+			$rsProducts->setUrlTemplates($arParams["TEMPLATE_DETAIL_URL"]);
+			while($product = $rsProducts->GetNextElement()) {
+				$fields = $product->GetFields();
+				$props = $product->GetProperties();
+
+				foreach($arClassif as $key => $value) {
+					$arClassif[$key]["PRODUCTS"][] = [
+						"NAME" => $fields["NAME"],
+						"DETAIL_URL" => $fields["DETAIL_PAGE_URL"],
+						"MATERIAL" => $props["MATERIAL"]["VALUE"],
+						"ARTNUMBER" => $props["ARTNUMBER"]["VALUE"],
+						"PRICE" => $props["PRICE"]["VALUE"],
+					];
+				}
+			}
+			$arResult["ITEMS"] = $arClassif;
 		}
-		$arResult["ITEMS"] = $arClassif;
- 
 
  		$this->setResultCacheKeys(["SECTION_QTY"]);
 	}
