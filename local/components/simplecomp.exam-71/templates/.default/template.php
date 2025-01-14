@@ -2,6 +2,9 @@
 
 <p>---</p>
 
+<?= GetMessage("TIMESTAMP", ["#TS#" => time()]); ?>
+<br>
+
 <? $url = $APPLICATION->GetCurPage() . "?F=Y"; ?>
 <a href="<?=$url?>"><?=$url;?></a>
 

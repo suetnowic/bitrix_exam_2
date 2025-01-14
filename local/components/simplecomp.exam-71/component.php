@@ -33,6 +33,9 @@ if(
 
 	if($this->StartResultCache(false, [$USER->GetGroups(), $isFilter, $arNavigation])) {
 
+		global $CACHE_MANAGER;
+		$CACHE_MANAGER->RegisterTag('iblock_id_3');
+
 		$arClassif = [];
 		$arProducts = [];
 
@@ -53,6 +56,7 @@ if(
 		$arResult["NAV_STRING"] = $rsClassif->GetPageNavString(GetMessage("NAV_TITLE"));
 
 		while($classif = $rsClassif->GetNext()) {
+
 			$arResult["SECTION_QTY"]++;
 			$arClassif[$classif["ID"]] = $classif;
 		}
