@@ -109,11 +109,11 @@ if(
 			}
 		}
 		$arResult["ITEMS"] = $arClassif;
+
+		$this->setResultCacheKeys(["SECTION_QTY"]);
+
+		$this->includeComponentTemplate();
 	}
-
-	$this->setResultCacheKeys(["SECTION_QTY"]);
 }
-
-$this->includeComponentTemplate();
 
 $APPLICATION->SetTitle(GetMessage("TITLE", ["#QTY#" => $arResult["SECTION_QTY"]]));
