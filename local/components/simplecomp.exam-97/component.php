@@ -83,9 +83,8 @@ if(
 		$arResult["ITEMS"] = $arrNews;
 
 		$this->SetResultCacheKeys(["NEWS_QTY"]);
-
-		$APPLICATION->SetTitle(GetMessage("TITLE", ["#QTY#" => $arResult["NEWS_QTY"]]));
+		
+		$this->includeComponentTemplate();
 	}
-	
-	$this->includeComponentTemplate();
 }
+$APPLICATION->SetTitle(GetMessage("TITLE", ["#QTY#" => $arResult["NEWS_QTY"]]));

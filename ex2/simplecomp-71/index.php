@@ -10,7 +10,7 @@ $APPLICATION->SetTitle("Простой компонент");
 		"CACHE_TYPE" => "A",
 		"CACHE_TIME" => "36000000",
 		"CACHE_GROUPS" => "Y",
-		"CLASSIF_IBLOCK_ID" => "7",
+		"CLASSIF_IBLOCK_ID" => "6",
 		"TEMPLATE_DETAIL_URL" => "catalog_exam/#SECTION_ID#/#ELEMENT_CODE#",
 		"PROP_CODE" => "FIRMA",
 		"NEWS_COUNT" => "2"
