@@ -6,6 +6,16 @@ use Bitrix\Main\Loader,
 
 global $USER;
 
+$arButtons = CIBlock::GetPanelButtons($arParams["NEWS_IBLOCK_ID"]);
+
+$arIcons[] = array(
+	"URL" => $arButtons["submenu"]["element_list"]["ACTION_URL"],
+	"TITLE" => GetMessage('IB_IN_ADMIN'),
+	"IN_PARAMS_MENU" => true
+);
+
+$this->AddIncludeAreaIcons($arIcons);
+
 if($this->StartResultCache(false, $USER->GetID())) {
 	if(!Loader::includeModule("iblock"))
 	{
@@ -66,6 +76,8 @@ if($this->StartResultCache(false, $USER->GetID())) {
 		while($arElem = $res->GetNextElement()) {
 			$arFields = $arElem->getFields();
 			$arProps = $arElem->getProperties();
+
+			
 			
 			if(!in_array($USER->GetID(), $arProps[$arParams["PROP_CODE"]]["VALUE"])) {
 				$newsQty++;
