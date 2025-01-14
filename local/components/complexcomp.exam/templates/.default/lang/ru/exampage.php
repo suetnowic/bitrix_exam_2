@@ -1,0 +1,3 @@
+<?
+$MESS["PARAM1"] = "PARAM1 = #PARAM1#";
+$MESS["PARAM2"] = "PARAM2 = #PARAM2#";
