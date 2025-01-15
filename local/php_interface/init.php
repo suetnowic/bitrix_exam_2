@@ -5,3 +5,5 @@ include __DIR__ . "/events/log_open_404.php";
 include __DIR__ . "/events/change_data_feedback_form.php";
 include __DIR__ . "/events/change_global_menu_content_manager.php";
 include __DIR__ . "/events/set_seo.php";
+
+include __DIR__ . "/agents/check_user_count.php";
