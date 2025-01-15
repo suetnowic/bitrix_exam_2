@@ -8,6 +8,30 @@
 	<?endif;?>
 	<?if($arParams["DISPLAY_NAME"]!="N" && $arResult["NAME"]):?>
 		<h3><?=$arResult["NAME"]?></h3>
+
+		<? if($arParams["REPORT_AJAX"] === "Y"):?>
+			<a href="#" id="ajax_report"><?=GetMessage("REPORT")?></a>
+
+			<script>
+				BX.bind(BX("ajax_report"), 'click', function(){
+					BX.ajax.post(
+						'<?=$APPLICATION->GetCurPage()?>',
+						{"REPORT": "Y", "id": '<?=$arResult["ID"]?>'},
+						function(result) {
+							var reportMsg = BX("report_msg");
+							var jsonData = JSON.parse(result);
+							reportMsg.innerText = jsonData.content;
+						}
+					);
+				});
+				
+			</script>
+
+		<? else: ?>
+			<a href="<?=$APPLICATION->GetCurPage()?>?REPORT=Y&ID=<?=$arResult["ID"]?>"><?=GetMessage("REPORT")?></a>
+		<? endif; ?>
+
+		<span id="report_msg"></span>
 	<?endif;?>
 	<div class="news-detail">
 	<?if($arParams["DISPLAY_PREVIEW_TEXT"]!="N" && $arResult["FIELDS"]["PREVIEW_TEXT"]):?>
