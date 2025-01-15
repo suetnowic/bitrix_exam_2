@@ -17,23 +17,25 @@ $this->setFrameMode(true);
 	<?=$arResult["NAV_STRING"]?><br />
 <?endif;?>
 <?foreach($arResult["ITEMS"] as $arItem):?>
-	<?
-	$this->AddEditAction($arItem['ID'], $arItem['EDIT_LINK'], CIBlock::GetArrayByID($arItem["IBLOCK_ID"], "ELEMENT_EDIT"));
-	$this->AddDeleteAction($arItem['ID'], $arItem['DELETE_LINK'], CIBlock::GetArrayByID($arItem["IBLOCK_ID"], "ELEMENT_DELETE"), array("CONFIRM" => GetMessage('CT_BNL_ELEMENT_DELETE_CONFIRM')));
-	?>
-	<p class="news-item" id="<?=$this->GetEditAreaId($arItem['ID']);?>">
-		<?if($arParams["DISPLAY_DATE"]!="N" && $arItem["DISPLAY_ACTIVE_FROM"]):?>
-			<span class="news-date-time"><?echo $arItem["DISPLAY_ACTIVE_FROM"]?></span>
-		<?endif?>
+	<? if($arItem["PROPERTIES"]["ENG_TITLE"]["VALUE"]): ?>
+		<?
+		$this->AddEditAction($arItem['ID'], $arItem['EDIT_LINK'], CIBlock::GetArrayByID($arItem["IBLOCK_ID"], "ELEMENT_EDIT"));
+		$this->AddDeleteAction($arItem['ID'], $arItem['DELETE_LINK'], CIBlock::GetArrayByID($arItem["IBLOCK_ID"], "ELEMENT_DELETE"), array("CONFIRM" => GetMessage('CT_BNL_ELEMENT_DELETE_CONFIRM')));
+		?>
+		<p class="news-item" id="<?=$this->GetEditAreaId($arItem['ID']);?>">
+			<?if($arParams["DISPLAY_DATE"]!="N" && $arItem["DISPLAY_ACTIVE_FROM"]):?>
+				<span class="news-date-time"><?echo $arItem["DISPLAY_ACTIVE_FROM"]?></span>
+			<?endif?>
 
-		<?if($arParams["DISPLAY_NAME"]!="N" && $arItem["PROPERTIES"]["ENG_TITLE"]["VALUE"]):?>
-				<b><?echo $arItem["PROPERTIES"]["ENG_TITLE"]["VALUE"]?></b><br />
-		<?endif;?>
+			<?if($arParams["DISPLAY_NAME"]!="N" && $arItem["PROPERTIES"]["ENG_TITLE"]["VALUE"]):?>
+					<b><?echo $arItem["PROPERTIES"]["ENG_TITLE"]["VALUE"]?></b><br />
+			<?endif;?>
 
-		<?if($arParams["DISPLAY_PREVIEW_TEXT"]!="N" && $arItem["PROPERTIES"]["ENG_PREV"]["VALUE"]):?>
-			<? echo $arItem["PROPERTIES"]["ENG_PREV"]["VALUE"]["TEXT"];?>
-		<?endif;?>
-	</p>
+			<?if($arParams["DISPLAY_PREVIEW_TEXT"]!="N" && $arItem["PROPERTIES"]["ENG_PREV"]["VALUE"]):?>
+				<? echo $arItem["PROPERTIES"]["ENG_PREV"]["VALUE"]["TEXT"];?>
+			<?endif;?>
+		</p>
+	<? endif; ?>
 <?endforeach;?>
 <?if($arParams["DISPLAY_BOTTOM_PAGER"]):?>
 	<br /><?=$arResult["NAV_STRING"]?>
