@@ -16,5 +16,10 @@ $arTemplateParameters = array(
 		"DEFAULT" => "N",
 		"PARENT" => 'ADDITIONAL_SETTINGS',
 	),
+	"SLOGAN" => [
+		"NAME" => GetMessage("SLOGAN"),
+		"TYPE" => "CHECKBOX",
+		"DEFAULT" => "N",
+	],
 );
 ?>

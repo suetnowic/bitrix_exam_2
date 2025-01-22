@@ -20,3 +20,9 @@ if (!is_array($arResult['SECTION']))
 
 $arResult['PRICES']['PRICE']['PRINT_VALUE'] = number_format((float)$arResult['PROPERTIES']['PRICE']['VALUE'], 0, '.', ' ');
 $arResult['PRICES']['PRICE']['PRINT_VALUE'] .= ' '.$arResult['PROPERTIES']['PRICECURRENCY']['VALUE_ENUM'];
+
+if(isset($arParams["SLOGAN"]) && $arParams["SLOGAN"] === "Y") {
+	$arResult['SLOGAN'] = TruncateText($arResult["PREVIEW_TEXT"], 40);
+
+	$this->__component->SetResultCacheKeys(['SLOGAN']);
+}

@@ -37,6 +37,7 @@
 		"DETAIL_URL" => $arResult["FOLDER"].$arResult["URL_TEMPLATES"]["element"],
 		
 		"DETAIL_SHOW_PICTURE" => $arParams['DETAIL_SHOW_PICTURE'],
+		"SLOGAN" => $arParams["SLOGAN"],
 	),
 	$component
 );?>
