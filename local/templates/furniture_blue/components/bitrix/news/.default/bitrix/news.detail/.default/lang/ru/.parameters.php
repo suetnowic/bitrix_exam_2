@@ -4,4 +4,5 @@ $MESS ['T_IBLOCK_DESC_NEWS_NAME'] = "Выводить название элем�
 $MESS ['T_IBLOCK_DESC_NEWS_PICTURE'] = "Выводить детальное изображение";
 $MESS ['T_IBLOCK_DESC_NEWS_TEXT'] = "Выводить текст анонса";
 $MESS["CANONICAL"] = "ID информационного блока для rel=canonical";
+$MESS["REPORT"] = "Собирать жалобы в режиме AJAX";
 ?>

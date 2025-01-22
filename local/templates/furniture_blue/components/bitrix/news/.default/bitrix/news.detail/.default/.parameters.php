@@ -27,5 +27,10 @@ $arTemplateParameters = array(
 		"TYPE" => "STRING",
 		"DEFAULT" => "N",
 	],
+	"REPORT" => [
+		"NAME" => GetMessage("REPORT"),
+		"TYPE" => "CHECKBOX",
+		"DEFAULT" => "N",
+	],
 );
 ?>

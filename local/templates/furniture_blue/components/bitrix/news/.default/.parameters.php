@@ -33,6 +33,11 @@ $arTemplateParameters = array(
 		"TYPE" => "STRING",
 		"DEFAULT" =>  "",
 	],
+	"REPORT_AJAX" => [
+		"NAME" => GetMessage("REPORT"),
+		"TYPE" => "CHECKBOX",
+		"DEFAULT" => "N",
+	],
 );
 
 if (($arCurrentValues['USE_SHARE'] ?? 'N') === 'Y')
