@@ -10,7 +10,8 @@ $APPLICATION->SetTitle("Простой компонент");
 		"CACHE_TIME" => "36000000",
 		"PRODUCTS_IBLOCK_ID" => "2",
 		"CLASSIF_IBLOCK_ID" => "8",
-		"UF_CODE" => "UF_NEW_CLASSIFIER"
+		"UF_CODE" => "UF_NEW_CLASSIFIER",
+		"DETAIL_PAGE_URL" => "/products/#SECTION_CODE#/#ELEMENT_ID#/"
 	),
 	false
 );?><?require($_SERVER["DOCUMENT_ROOT"]."/bitrix/footer.php");?>

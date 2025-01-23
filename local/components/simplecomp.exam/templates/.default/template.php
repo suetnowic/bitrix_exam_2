@@ -9,7 +9,10 @@
 				<? foreach($item["PRODUCTS"] as $product): ?>
 					<li>
 						<?=$product["NAME"];?> - 
-						<?=$product["PROPERTY_PRICE_VALUE"];?> - <?=$product["PROPERTY_MATERIAL_VALUE"];?> - <?=$product["PROPERTY_ARTNUMBER_VALUE"];?>
+						<a href="<?=$product["DETAIL_PAGE_URL"]?>"><?=$product["DETAIL_PAGE_URL"]?></a> -
+						<?=$product["PROPERTY_PRICE_VALUE"];?> - 
+						<?=$product["PROPERTY_MATERIAL_VALUE"];?> - 
+						<?=$product["PROPERTY_ARTNUMBER_VALUE"];?>
 					</li>
 				<? endforeach; ?>
 			</ul>

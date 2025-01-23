@@ -64,7 +64,13 @@ if(
 			false,
 			false,
 			[
-				"ID", "NAME", "PROPERTY_MATERIAL", "PROPERTY_ARTNUMBER", "PROPERTY_PRICE", "IBLOCK_SECTION_ID"
+				"ID", 
+				"NAME", 
+				"PROPERTY_MATERIAL", 
+				"PROPERTY_ARTNUMBER", 
+				"PROPERTY_PRICE", 
+				"IBLOCK_SECTION_ID", 
+				"DETAIL_PAGE_URL",
 			]
 		);
 		while($arElem = $rsProducts->GetNext()) {
