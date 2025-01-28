@@ -16,6 +16,13 @@ if(!isset($arParams["PRODUCTS_IBLOCK_ID"])) {
 
 global $USER;
 
+$arIcons[] = array(
+	"URL" =>$APPLICATION->GetCurPageParam("hello=world", ["hello"]),
+	"TITLE"	=> GetMessage('HELLO_WORLD'),
+);
+
+$this->AddIncludeAreaIcons($arIcons);
+
 if(
 	intval($arParams["PRODUCTS_IBLOCK_ID"]) > 0 &&
 	!empty($arParams["PROP_CODE"])
